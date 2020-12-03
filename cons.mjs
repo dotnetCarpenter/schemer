@@ -1,4 +1,3 @@
-// @ts-check
 /**
  * The Law of Cons
  * The primitive cons takes two arguments.

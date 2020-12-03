@@ -1,4 +1,3 @@
-// @ts-check
-export default function quote () {
-	return []
+export default function quote (...args) {
+	return args
 }

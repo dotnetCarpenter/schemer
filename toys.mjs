@@ -58,14 +58,16 @@ assert(equals( cons('a', cdr([['b'],'c','d'])), ['a','c','d']), "['a','c','d']")
 
 assert( isNull([]) , "Yes, because it is the list composed of zero S-expressions. This question can also be written: (null? l).")
 assert( isNull(quote()), "True, because (quote ()) is a notation for the null list")
-assert( isNull(['a','b','c']) === false, "False, because l is a non-empty list.")
-assert( isNull('spaghetti'), "No answer because you cannot ask null? of an atom. In practice, (null? a)  is false for everything, except the empty list." )
+assert( isNull(['a','b','c']) === false , "False, because l is a non-empty list.")
+assert( isNull('spaghetti') === false , "No answer because you cannot ask null? of an atom. In practice, (null? a)  is false for everything, except the empty list." )
 
-// The  Law of Null?
+// The Law of Null?
 // The primitive null? is
 // de­fined only for lists.
 
-
+assert( isAtom(car(['Harry','had','a','heap','of','apples'])), "True, because (car l) is Harry, and Harry is an atom")
+assert( isAtom(cdr(['Harry','had','a','heap','of','apples'])) === false, "False")
+assert( isAtom(cdr(['Harry'])) === false, "False, because  the  list () is not an  atom.")
 
 console.log(  )
 
