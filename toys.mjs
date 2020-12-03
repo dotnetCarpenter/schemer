@@ -2,6 +2,8 @@
 
 import assert from "assert"
 import { isAtom } from "./atom.mjs"
+import { isNull } from "./null.mjs"
+import quote from "./quote.mjs"
 import car from './car.mjs'
 import cdr from './cdr.mjs'
 import cons from './cons.mjs'
@@ -21,6 +23,7 @@ assert(car([]) === null, "You cannot ask for the car of the empty list.")
 assert(equals( car([[['hotdogs']], ['and'], ['pickle'], 'relish']), [['hotdogs']]), "The list of the list of hotdogs. [['hotdogs']] is the first S-expression.")
 assert(equals(car(car( [[['hotdogs']], ['and']] )), ['hotdogs']), "['hotdogs']")
 
+
 assert(equals(cdr(['a', 'b', 'c']), ['b', 'c']), "because ['b', 'c'] is the list ['a', 'b', 'c'] without ( car(['a', 'b', 'c'])).")
 assert(equals(cdr([['a', 'b', 'c'], 'x', 'y', 'z']), ['x', 'y', 'z']), "['x', 'y', 'z']")
 assert(equals(cdr(['hamburger']), []), "[]")
@@ -35,13 +38,14 @@ assert(equals(car(cdr( [['b'], ['x', 'y'], [['c']]] )), ['x', 'y']), "(x y), bec
 assert(equals(cdr(cdr( [['b'], ['x', 'y'], [['c']]] )), [[['c']]] ), "(((c))), because ((x y) ((c))) is (cdr l), and (((c))) is  the cdr of (cdr l).")
 assert(cdr(car( ['a', ['b', ['c']], 'd'] )) === null, "No answer, since (car l) is an atom,  and cdr does not take an  atom as an  argument; see The Law of Cdr.")
 
-assert(equals(cons('peanut', ['butter', 'jelly']), [ 'peanut', 'butter', 'jelly' ]), "(peanut butter and jelly), because cons adds  an  atom to  the front of a list.")
-assert(equals(cons(['banana', 'and'], [ 'peanut', 'butter', 'jelly' ]), [ [ 'banana', 'and' ], 'peanut', 'butter', 'jelly' ]), "((banana and) peanut butter and jelly), because cons adds any S-expression to the front of a list.")
-assert(equals( cons([['help'], 'this'], ['is', 'very', [['very'], 'to', 'learn']]), [ [ [ 'help' ], 'this' ], 'is', 'very', [ [ 'very' ], 'to', 'learn' ] ]), "(((help) this) is  very  ((hard) to learn)).")
-assert(equals( cons(['a', 'b', ['c']], []), [ [ 'a', 'b', [ 'c' ] ] ]), "((a b (c))), because  () is a list.")
+
+assert(equals( cons('peanut', ['butter', 'jelly']) , [ 'peanut', 'butter', 'jelly' ]), "(peanut butter and jelly), because cons adds  an  atom to  the front of a list.")
+assert(equals( cons(['banana', 'and'], [ 'peanut', 'butter', 'jelly' ]) , [ [ 'banana', 'and' ], 'peanut', 'butter', 'jelly' ]), "((banana and) peanut butter and jelly), because cons adds any S-expression to the front of a list.")
+assert(equals( cons([['help'], 'this'], ['is', 'very', [['very'], 'to', 'learn']]) , [ [ [ 'help' ], 'this' ], 'is', 'very', [ [ 'very' ], 'to', 'learn' ] ]), "(((help) this) is  very  ((hard) to learn)).")
+assert(equals( cons(['a', 'b', ['c']], []), [ [ 'a', 'b', [ 'c' ] ] ]) , "((a b (c))), because  () is a list.")
 assert(equals( cons('a', []), ['a'] ), "(a).")
-assert.throws(() => { cons([['a', 'b', 'c']], 'b') }, "No answer,1 since the second argument l must be a list. Page 8")
-assert.throws(() => { cons('a', 'b') }, "No answer,1 since the second argument l must be a list. Page 8")
+assert.throws(() => { cons([['a', 'b', 'c']], 'b') }, "No answer, since the second argument l must be a list. Page 8")
+assert.throws(() => { cons('a', 'b') }, "No answer, since the second argument l must be a list. Page 8")
 
 // The Law of Cons
 // The primitive cons takes two arguments.
@@ -52,6 +56,15 @@ assert(equals( cons('a',car([['b'],'c','d'])), ['a','b']), "['a','b']")
 assert(equals( cons('a', cdr([['b'],'c','d'])), ['a','c','d']), "['a','c','d']")
 
 
+assert( isNull([]) , "Yes, because it is the list composed of zero S-expressions. This question can also be written: (null? l).")
+assert( isNull(quote()), "True, because (quote ()) is a notation for the null list")
+assert( isNull(['a','b','c']) === false, "False, because l is a non-empty list.")
+assert( isNull('spaghetti'), "No answer because you cannot ask null? of an atom. In practice, (null? a)  is false for everything, except the empty list." )
+
+// The  Law of Null?
+// The primitive null? is
+// de­fined only for lists.
+
 
 
 console.log(  )
@@ -59,11 +72,11 @@ console.log(  )
 
 
 
+
 function equals (a, b) {
 	if (isAtom(a)) return a == b
 	return a.every(listEq(b)) && b.every(listEq(a))
-
-	function listEq(y) {
-		return (x, n) => equals(x, y[n])
-	}
+}
+function listEq(y) {
+	return (x, n) => equals(x, y[n])
 }
