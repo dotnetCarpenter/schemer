@@ -1,12 +1,10 @@
-// @ts-check
-
-import assert from "assert"
-import { isAtom } from "./atom.mjs"
-import { isNull } from "./null.mjs"
-import quote from "./quote.mjs"
-import car from './car.mjs'
-import cdr from './cdr.mjs'
-import cons from './cons.mjs'
+import assert from 'assert'
+import { isAtom } from './lib/atom.mjs'
+import { isNull } from './lib/null.mjs'
+import quote from './lib/quote.mjs'
+import car from './lib/car.mjs'
+import cdr from './lib/cdr.mjs'
+import cons from './lib/cons.mjs'
 
 
 assert(isAtom([]) === false, "No because [] is just a list.")
@@ -65,9 +63,15 @@ assert( isNull('spaghetti') === false , "No answer because you cannot ask null? 
 // The primitive null? is
 // de­fined only for lists.
 
+assert( isAtom('Harry'), "True, because Harry is a string of characters beginning  with a letter.")
+assert( isAtom(['Harry','had','a','heap','of','apples']) === false, "False, since s is a list.")
+assert( isAtom.length === 1, "It takes one argument. The argument can be any S-expression.")
 assert( isAtom(car(['Harry','had','a','heap','of','apples'])), "True, because (car l) is Harry, and Harry is an atom")
 assert( isAtom(cdr(['Harry','had','a','heap','of','apples'])) === false, "False")
 assert( isAtom(cdr(['Harry'])) === false, "False, because  the  list () is not an  atom.")
+assert( isAtom(car(cdr(['swing', 'low', 'sweet', 'cherry', 'oat']))), "True, because (cdr l) is (low sweet cherry oat), and (car (cdr l)) is low, which is an  atom.")
+
+
 
 console.log(  )
 
