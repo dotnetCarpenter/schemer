@@ -15,10 +15,12 @@ import isLat from './lib/isLat.mjs'
 
 {
 	const l = quote ('Jack', quote ('Sprat', 'could'), 'eat', 'no', 'chicken', 'fat')
-	assert(not (isLat (l)), "False, since ( car l) issince one of the S-expressions in l is a list.")
+	assert(not (isLat (l)), "False, since one of the S-expressions in l is a list.")
 }
 
 {
 	const l = quote ()
 	assert( isLat (l), "True, because it does not contain a list.")
 }
+
+
