@@ -1,11 +1,11 @@
 import assert from 'assert'
-import { isAtom } from './lib/atom.mjs'
-import { isNull } from './lib/null.mjs'
+import isAtom from './lib/isAtom.mjs'
+import isNull from './lib/isNull.mjs'
 import quote from './lib/quote.mjs'
 import car from './lib/car.mjs'
 import cdr from './lib/cdr.mjs'
 import cons from './lib/cons.mjs'
-import isEq from './lib/eq.mjs'
+import isEq from './lib/isEq.mjs'
 
 
 assert(isAtom([]) === false, "No because [] is just a list.")
