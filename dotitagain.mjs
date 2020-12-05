@@ -5,6 +5,9 @@ import isLat from './lib/isLat.mjs'
 import or from './lib/or.mjs'
 import isNull from './lib/isNull.mjs'
 import isAtom from './lib/isAtom.mjs'
+import isEq from './lib/isEq.mjs'
+import car from './lib/car.mjs'
+import cdr from './lib/cdr.mjs'
 
 {
 	const l = quote ('Jack', 'Sprat', 'could', 'eat', 'no', 'chicken', 'fat')
@@ -35,4 +38,17 @@ import isAtom from './lib/isAtom.mjs'
 {
 	const l1 = quote ('a','b','c'), l2 = quote ('atom')
 	assert (not (or (isNull (l1), isNull (l2))), "False, because neither (null? l1) nor (null? l2) is true where l1 is (a  b  c) and l2 is (atom).")
+}
+
+
+{
+	const a = 'meat', lat = quote ('mashed', 'potatoes', 'and', 'meat', 'gravy')
+	assert (isMember (a, lat))
+}
+
+function isMember (a, lat) {
+	return (isNull (lat))
+		? false
+		: (or (isEq (car (lat), a),
+					isMember (a, (cdr (lat)))))
 }

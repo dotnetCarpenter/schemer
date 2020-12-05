@@ -18,7 +18,8 @@
 	(lambda (x)
 		(display x) (newline)))
 
+; Does not work because I don't know how to define a list to a variable
 ; (define a "meat")
-; (define lat 'mashed 'potatoes 'and 'meat 'gravy))
+; (define lat quote (mashed potatoes and meat gravy))
 ; (log (member? a lat))
 ; (log lat) (log a)
