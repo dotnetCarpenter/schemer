@@ -1,4 +1,4 @@
-import { deepStrictEqual as assert } from 'assert'
+import { deepStrictEqual } from 'assert'
 import quote from './lib/quote.mjs'
 import isNull from './lib/isNull.mjs'
 import isEq from './lib/isEq.mjs'
@@ -8,19 +8,23 @@ import cons from './lib/cons.mjs'
 
 {
 	const a = 'mint', lat = quote ('lamb', 'chops', 'and', 'mint', 'jelly')
-	assert( rember (a, lat), quote ('lamb', 'chops', 'and', 'jelly'), "(lamb chops and jelly)")
+	deepStrictEqual( rember (a, lat), quote ('lamb', 'chops', 'and', 'jelly'), "(lamb chops and jelly)")
 }
 {
 	const a = 'mint', lat = quote ('lamb', 'chops', 'and', 'mint', 'flavored', 'mint', 'jelly')
-	assert( rember (a, lat), quote ('lamb', 'chops', 'and', 'flavored', 'mint', 'jelly'), "(lamb chops and flavored mint jelly).")
+	deepStrictEqual( rember (a, lat), quote ('lamb', 'chops', 'and', 'flavored', 'mint', 'jelly'), "(lamb chops and flavored mint jelly).")
 }
 {
 	const a = 'toast', lat = quote ('bacon', 'lettuce', 'and', 'tomato')
-	assert( rember (a, lat), quote ('bacon', 'lettuce', 'and', 'tomato'), "(bacon lettuce and tomato).")
+	deepStrictEqual( rember (a, lat), quote ('bacon', 'lettuce', 'and', 'tomato'), "(bacon lettuce and tomato).")
 }
 {
 	const a = 'cup', lat = quote ('coffee', 'cup', 'tea', 'and', 'hick', 'cup')
-	assert( rember (a, lat), quote ('coffee', 'tea', 'and', 'hick', 'cup'), "(coffee tea cup and hick cup).")
+	deepStrictEqual( rember (a, lat), quote ('coffee', 'tea', 'and', 'hick', 'cup'), "(coffee tea cup and hick cup).")
+}
+{
+	const a = 'sauce', lat = quote ('soy', 'sauce', 'and', 'tomato', 'sauce')
+	deepStrictEqual( rember (a, lat), quote ('soy', 'and', 'tomato', 'sauce'), "(rember a lat) is (soy and tomato sauce).")
 }
 
 /**
