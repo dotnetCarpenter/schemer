@@ -2,6 +2,8 @@ import { deepStrictEqual } from 'assert'
 import quote from './lib/quote.mjs'
 import rember from './lib/rember.mjs'
 import firsts from './lib/firsts.mjs'
+import insertR from './lib/insertR.mjs'
+
 
 {
 	const a = 'mint', lat = quote ('lamb', 'chops', 'and', 'mint', 'jelly')
@@ -58,4 +60,24 @@ import firsts from './lib/firsts.mjs'
                   (quote ('eleven', 'green', 'oranges')),
                   (quote (quote ('no'), 'more')))
 	deepStrictEqual( firsts (l), quote (quote ('five', 'plums'), 'eleven', quote ('no')), "((five plums) eleven (no)).")
+}
+
+
+{
+  const insert = 'topping',
+    at = 'fudge',
+    lat = quote ('ice', 'cream', 'with', 'fudge', 'for', 'dessert')
+  deepStrictEqual(
+    insertR (insert, at, lat),
+    quote ('ice', 'cream', 'with', 'fudge', 'topping', 'for', 'dessert'),
+		"(ice cream with fudge topping for dessert).")
+}
+{
+  const insert = 'jalapeño',
+    at = 'and',
+    lat = quote ('tacos', 'tamales', 'and', 'salsa')
+  deepStrictEqual(
+    insertR (insert, at, lat),
+    quote ('tacos', 'tamales', 'and', 'jalapeño', 'salsa'),
+		"(tacos tamales and jalapeño salsa).")
 }
