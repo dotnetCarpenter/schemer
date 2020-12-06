@@ -1,13 +1,7 @@
 import { deepStrictEqual } from 'assert'
 import quote from './lib/quote.mjs'
 import rember from './lib/rember.mjs'
-
-import isNull from './lib/isNull.mjs'
-import isEq from './lib/isEq.mjs'
-import car from './lib/car.mjs'
-import cdr from './lib/cdr.mjs'
-import cons from './lib/cons.mjs'
-import not from './lib/not.mjs'
+import firsts from './lib/firsts.mjs'
 
 {
 	const a = 'mint', lat = quote ('lamb', 'chops', 'and', 'mint', 'jelly')
@@ -64,19 +58,4 @@ import not from './lib/not.mjs'
                   (quote ('eleven', 'green', 'oranges')),
                   (quote (quote ('no'), 'more')))
 	deepStrictEqual( firsts (l), quote (quote ('five', 'plums'), 'eleven', quote ('no')), "((five plums) eleven (no)).")
-}
-
-
-/**
- *
- * @param {any[]} l a list
- * @returns {any[]}
- */
-function firsts (l) {
-  return isNull (l)
-    ? quote ()
-    : isNull (car (car (l)))
-      ? firsts (cdr (l))
-      : cons (car (car (l)),
-        firsts (cdr (l)))
 }
