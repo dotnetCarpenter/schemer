@@ -5,9 +5,7 @@ import isLat from './lib/isLat.mjs'
 import or from './lib/or.mjs'
 import isNull from './lib/isNull.mjs'
 import isAtom from './lib/isAtom.mjs'
-import isEq from './lib/isEq.mjs'
-import car from './lib/car.mjs'
-import cdr from './lib/cdr.mjs'
+import isMember from './lib/isMember.mjs'
 
 {
 	const l = quote ('Jack', 'Sprat', 'could', 'eat', 'no', 'chicken', 'fat')
@@ -39,16 +37,7 @@ import cdr from './lib/cdr.mjs'
 	const l1 = quote ('a','b','c'), l2 = quote ('atom')
 	assert (not (or (isNull (l1), isNull (l2))), "False, because neither (null? l1) nor (null? l2) is true where l1 is (a  b  c) and l2 is (atom).")
 }
-/* for `cond`, a user supplied function must
-be able to terminate the flow and return a
-user given value.
-The snippet below does not. */
-// const cond =
-// 	(...fs) =>
-// 		(isNull (fs)
-// 			? false
-// 			: (or (car (fs)(),
-// 				cond.apply (null, cdr (fs)))))
+
 
 {
 	const a = 'meat', lat = quote ('mashed', 'potatoes', 'and', 'meat', 'gravy')
@@ -58,12 +47,3 @@ The snippet below does not. */
 	const a = 'liver', lat = quote ('bagels', 'and', 'lox')
 	assert (not (isMember (a, lat)))
 }
-
-
-function isMember (a, lat) {
-	return (isNull (lat))
-		? false
-		: (or (isEq (car (lat), a),
-			isMember (a, (cdr (lat)))))
-}
-// function els () { return true }
