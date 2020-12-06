@@ -4,6 +4,7 @@ import rember from './lib/rember.mjs'
 import firsts from './lib/firsts.mjs'
 import insertR from './lib/insertR.mjs'
 import insertL from './lib/insertL.mjs'
+import { subst, subst2 } from './lib/subst.mjs'
 
 
 {
@@ -60,7 +61,11 @@ import insertL from './lib/insertL.mjs'
   const l = quote (quote (quote ('five', 'plums'), 'four'),
                   (quote ('eleven', 'green', 'oranges')),
                   (quote (quote ('no'), 'more')))
-  deepStrictEqual( firsts (l), quote (quote ('five', 'plums'), 'eleven', quote ('no')), "((five plums) eleven (no)).")
+
+  deepStrictEqual(
+    firsts (l),
+    quote (quote ('five', 'plums'), 'eleven', quote ('no')),
+    "((five plums) eleven (no)).")
 }
 
 
@@ -85,6 +90,7 @@ import insertL from './lib/insertL.mjs'
       "(tacos tamales and jalapeño salsa).")
 }
 
+
 {
   const insert = 'topping',
     at = 'fudge',
@@ -94,4 +100,28 @@ import insertL from './lib/insertL.mjs'
       insertL (insert, at, lat),
       quote ('ice', 'cream', 'with', 'topping', 'fudge', 'for', 'dessert'),
       "(ice cream with topping fudge for dessert).")
+}
+
+
+{
+  const insert = 'topping',
+    at = 'fudge',
+    lat = quote ('ice', 'cream', 'with', 'fudge', 'for', 'dessert')
+
+    deepStrictEqual(
+      subst (insert, at, lat),
+      quote ('ice', 'cream', 'with', 'topping', 'for', 'dessert'),
+      "(ice cream with topping for dessert).")
+}
+
+{
+  const insert = 'vanilla',
+    at1 = 'chocolate',
+    at2 = 'banana',
+    lat = quote ('banana', 'ice', 'cream', 'with', 'chocolate', 'topping')
+
+    deepStrictEqual(
+      subst2 (insert, at1, at2, lat),
+      quote ('vanilla', 'ice', 'cream', 'with', 'chocolate', 'topping'),
+      "(vanilla ice cream with chocolate topping).")
 }
