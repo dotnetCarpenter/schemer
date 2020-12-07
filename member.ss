@@ -11,8 +11,8 @@
 	(lambda (x)
 		(display x) (newline)))
 
-; Does not work because ??
-(define a "meat")
+
+(define a 'meat)
 (define lat (quote (mashed potatoes and meat gravy)))
 (log (member? a lat))
 (log lat) (log a)
