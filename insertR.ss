@@ -8,7 +8,7 @@
 					(cons insert (cdr lat))))
 				(else (cons (car lat)
 					(insertR insert at
-						(cdr (lat))))))))))
+						(cdr lat)))))))))
 
 (define log
 	(lambda (x)
