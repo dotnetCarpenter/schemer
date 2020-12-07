@@ -1,0 +1,29 @@
+{
+  "name": "schemer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc",
+    "dev:typecheck": "npm run typecheck -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotnetCarpenter/schemer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "LGPL",
+  "bugs": {
+    "url": "https://github.com/dotnetCarpenter/schemer/issues"
+  },
+  "homepage": "https://github.com/dotnetCarpenter/schemer#readme"
+}
