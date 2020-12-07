@@ -2,7 +2,7 @@ import { deepStrictEqual } from 'assert'
 import quote from './lib/quote.mjs'
 import { rember, multirember } from './lib/rember.mjs'
 import firsts from './lib/firsts.mjs'
-import { insertR, multiinsertR } from './lib/insertR.mjs'
+import { insertR, multiinsertR, multiinsertL } from './lib/insertR.mjs'
 import insertL from './lib/insertL.mjs'
 import { subst, subst2 } from './lib/subst.mjs'
 
@@ -157,3 +157,24 @@ import { subst, subst2 } from './lib/subst.mjs'
     quote ('coffee', 'cup', 'tray', 'tea', 'cup', 'tray', 'and', 'hick', 'cup', 'tray',),
     "(coffee cup tray tea cup tray and hick cup tray).")
 }
+
+/* multiinsertL */
+{
+  const insert = 'fried',
+    at = 'fish',
+    lat = quote ('chips', 'and', 'fish', 'or', 'fish', 'and', 'fried')
+  deepStrictEqual(
+    multiinsertL (insert, at, lat),
+    quote ('chips', 'and', 'fried', 'fish', 'or', 'fried', 'fish', 'and', 'fried'),
+    "(chips and fried fish or fried fish and fried).")
+  console.log(multiinsertL (insert, at, lat))
+}
+
+/*
+  The Fourth Commandment
+      (preliminary)
+  Always change at least one argument while recurring.
+  It must be changed to be closer to termination.
+  The changing argument must be tested in the termination condition:
+  when using cdr, test termination with null?.
+*/
