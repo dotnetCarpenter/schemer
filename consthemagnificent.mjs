@@ -1,12 +1,12 @@
 import { deepStrictEqual } from 'assert'
 import quote from './lib/quote.mjs'
-import rember from './lib/rember.mjs'
+import { rember, multirember } from './lib/rember.mjs'
 import firsts from './lib/firsts.mjs'
 import insertR from './lib/insertR.mjs'
 import insertL from './lib/insertL.mjs'
 import { subst, subst2 } from './lib/subst.mjs'
 
-
+/* rember */
 {
   const a = 'mint', lat = quote ('lamb', 'chops', 'and', 'mint', 'jelly')
   deepStrictEqual( rember (a, lat), quote ('lamb', 'chops', 'and', 'jelly'), "(lamb chops and jelly)")
@@ -28,6 +28,7 @@ import { subst, subst2 } from './lib/subst.mjs'
   deepStrictEqual( rember (a, lat), quote ('soy', 'and', 'tomato', 'sauce'), "(rember a lat) is (soy and tomato sauce).")
 }
 
+/* firsts */
 {
   const l = quote ( (quote ('apple', 'peach', 'pumpkin')),
                     (quote ('plum', 'pear', 'cherry')),
@@ -68,7 +69,7 @@ import { subst, subst2 } from './lib/subst.mjs'
     "((five plums) eleven (no)).")
 }
 
-
+/* insertR */
 {
   const insert = 'topping',
     at = 'fudge',
@@ -90,7 +91,7 @@ import { subst, subst2 } from './lib/subst.mjs'
       "(tacos tamales and jalapeño salsa).")
 }
 
-
+/* insertL */
 {
   const insert = 'topping',
     at = 'fudge',
@@ -102,7 +103,7 @@ import { subst, subst2 } from './lib/subst.mjs'
       "(ice cream with topping fudge for dessert).")
 }
 
-
+/* subst */
 {
   const insert = 'topping',
     at = 'fudge',
@@ -113,7 +114,7 @@ import { subst, subst2 } from './lib/subst.mjs'
       quote ('ice', 'cream', 'with', 'topping', 'for', 'dessert'),
       "(ice cream with topping for dessert).")
 }
-
+/* subst2 */
 {
   const insert = 'vanilla',
     at1 = 'chocolate',
@@ -124,4 +125,14 @@ import { subst, subst2 } from './lib/subst.mjs'
       subst2 (insert, at1, at2, lat),
       quote ('vanilla', 'ice', 'cream', 'with', 'chocolate', 'topping'),
       "(vanilla ice cream with chocolate topping).")
+}
+
+/* multirember */
+{
+  const a = 'cup',
+    lat = quote ('coffee', 'cup', 'tea', 'cup', 'and', 'hick', 'cup')
+  deepStrictEqual(
+    multirember (a, lat),
+    quote ('coffee', 'tea', 'and', 'hick'),
+    "(coffee tea and hick').")
 }
