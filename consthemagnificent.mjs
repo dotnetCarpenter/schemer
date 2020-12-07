@@ -15,6 +15,10 @@ import { subst, subst2 } from './lib/subst.mjs'
   const a = 'mint', lat = quote ('lamb', 'chops', 'and', 'mint', 'flavored', 'mint', 'jelly')
   deepStrictEqual( rember (a, lat), quote ('lamb', 'chops', 'and', 'flavored', 'mint', 'jelly'), "(lamb chops and flavored mint jelly).")
 }
+/*
+  The Second Commandment
+  Use cons to build lists.
+ */
 {
   const a = 'toast', lat = quote ('bacon', 'lettuce', 'and', 'tomato')
   deepStrictEqual( rember (a, lat), quote ('bacon', 'lettuce', 'and', 'tomato'), "(bacon lettuce and tomato).")
@@ -27,6 +31,13 @@ import { subst, subst2 } from './lib/subst.mjs'
   const a = 'sauce', lat = quote ('soy', 'sauce', 'and', 'tomato', 'sauce')
   deepStrictEqual( rember (a, lat), quote ('soy', 'and', 'tomato', 'sauce'), "(rember a lat) is (soy and tomato sauce).")
 }
+
+/*
+  The Third Commandment
+  When building a list, describe the
+  first typical ele­ment, and then
+  cons it onto the natural recursion.
+ */
 
 /* firsts */
 {
