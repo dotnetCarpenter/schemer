@@ -134,5 +134,5 @@ import { subst, subst2 } from './lib/subst.mjs'
   deepStrictEqual(
     multirember (a, lat),
     quote ('coffee', 'tea', 'and', 'hick'),
-    "(coffee tea and hick').")
+    "(coffee tea and hick).")
 }
