@@ -175,6 +175,6 @@ import { subst, subst2 } from './lib/subst.mjs'
       (preliminary)
   Always change at least one argument while recurring.
   It must be changed to be closer to termination.
-  The changing argument must be tested in the termination condition:
-  when using cdr, test termination with null?.
+  The changing argument must be tested in the termination
+  condition: when using cdr, test termination with null?.
 */
