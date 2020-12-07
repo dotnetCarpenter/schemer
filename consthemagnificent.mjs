@@ -2,7 +2,7 @@ import { deepStrictEqual } from 'assert'
 import quote from './lib/quote.mjs'
 import { rember, multirember } from './lib/rember.mjs'
 import firsts from './lib/firsts.mjs'
-import insertR from './lib/insertR.mjs'
+import { insertR, multiinsertR } from './lib/insertR.mjs'
 import insertL from './lib/insertL.mjs'
 import { subst, subst2 } from './lib/subst.mjs'
 
@@ -90,6 +90,16 @@ import { subst, subst2 } from './lib/subst.mjs'
       quote ('tacos', 'tamales', 'and', 'jalapeño', 'salsa'),
       "(tacos tamales and jalapeño salsa).")
 }
+{
+  const insert = 'souce',
+    at = 'salsa',
+    lat = quote ('tacos', 'tamales', 'and', 'salsa')
+
+    deepStrictEqual(
+      insertR (insert, at, lat),
+      quote ('tacos', 'tamales', 'and', 'salsa', 'souce'),
+      "(tacos tamales and salsa souce).")
+}
 
 /* insertL */
 {
@@ -135,4 +145,15 @@ import { subst, subst2 } from './lib/subst.mjs'
     multirember (a, lat),
     quote ('coffee', 'tea', 'and', 'hick'),
     "(coffee tea and hick).")
+}
+
+/* multiinsertR */
+{
+  const insert = 'tray',
+    at = 'cup',
+    lat = quote ('coffee', 'cup', 'tea', 'cup', 'and', 'hick', 'cup')
+  deepStrictEqual(
+    multiinsertR (insert, at, lat),
+    quote ('coffee', 'cup', 'tray', 'tea', 'cup', 'tray', 'and', 'hick', 'cup', 'tray',),
+    "(coffee cup tray tea cup tray and hick cup tray).")
 }
