@@ -1,11 +1,11 @@
 import assert from 'assert'
-import quote from './lib/quote.mjs'
-import not from './lib/not.mjs'
-import isLat from './lib/isLat.mjs'
-import or from './lib/or.mjs'
-import isNull from './lib/isNull.mjs'
-import isAtom from './lib/isAtom.mjs'
-import isMember from './lib/isMember.mjs'
+import quote from './lib/quote.js'
+import not from './lib/not.js'
+import isLat from './lib/isLat.js'
+import or from './lib/or.js'
+import isNull from './lib/isNull.js'
+import isAtom from './lib/isAtom.js'
+import isMember from './lib/isMember.js'
 
 {
 	const l = quote ('Jack', 'Sprat', 'could', 'eat', 'no', 'chicken', 'fat')

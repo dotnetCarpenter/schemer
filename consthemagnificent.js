@@ -1,10 +1,10 @@
 import { deepStrictEqual } from 'assert'
-import quote from './lib/quote.mjs'
-import { rember, multirember } from './lib/rember.mjs'
-import firsts from './lib/firsts.mjs'
-import { insertR, multiinsertR, multiinsertL } from './lib/insertR.mjs'
-import insertL from './lib/insertL.mjs'
-import { subst, subst2 } from './lib/subst.mjs'
+import quote from './lib/quote.js'
+import { rember, multirember } from './lib/rember.js'
+import firsts from './lib/firsts.js'
+import { insertR, multiinsertR, multiinsertL } from './lib/insertR.js'
+import insertL from './lib/insertL.js'
+import { subst, subst2 } from './lib/subst.js'
 
 /* rember */
 {
