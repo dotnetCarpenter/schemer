@@ -178,7 +178,6 @@ import { subst, subst2 } from './lib/subst.mjs'
     multiinsertL (insert, at, lat),
     quote ('chips', 'and', 'fried', 'fish', 'or', 'fried', 'fish', 'and', 'fried'),
     "(chips and fried fish or fried fish and fried).")
-  console.log(multiinsertL (insert, at, lat))
 }
 
 /*
